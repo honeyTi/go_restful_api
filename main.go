@@ -9,5 +9,5 @@ func main() {
 	db.Database()
 	defer db.SqlDB.Close()
 	router := router2.InitRouter()
-	router.Run(":8080")
+	router.Run(":8090")
 }

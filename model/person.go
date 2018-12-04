@@ -7,8 +7,25 @@ import (
 
 type Person struct {
 	Id        int    `json:"id" form:"id"`
-	FirstName string `json:"first_name" form "first_name"`
+	FirstName string `json:"first_name" form:"first_name"`
 	LastName  string `json:"last_name" form:"last_name"`
+}
+
+type Book_history_25 struct {
+	Id int `json:"id" form:"id"`
+	BookName string `json:"book_name" form:"book_name"`
+	BookIndex string `json:"book_index" form:"book_index"`
+	BookContent string `json:"book_content" form:"book_content"`
+}
+
+func (b *Book_history_25) AddBookHistory25() (id int64, err error)  {
+	rs, err := db.SqlDB.Exec("INSERT INTO history_book_25 (book_name, book_index, book_content) VALUES (?, ?, ?)", b.BookName, b.BookIndex, b.BookContent)
+	if err != nil {
+		log.Fatalln(err)
+		return
+	}
+	id, err = rs.LastInsertId()
+	return
 }
 
 func (p *Person) AddPerson() (id int64, err error) {
