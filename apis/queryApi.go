@@ -43,13 +43,28 @@ func SelectAllPerson(c *gin.Context) {
 	})
 }
 
-// 增加书记页面
+// 增加书内容
 func Add_25_history_book(c *gin.Context) {
 	bookName := c.Request.FormValue("book_name")
 	bookIndex := c.Request.FormValue("book_index")
 	bookContent := c.Request.FormValue("book_content")
 	p := model.Book_history_25{BookName: bookName, BookIndex: bookIndex, BookContent: bookContent}
 	_, err := (&p).AddBookHistory25()
+	if err != nil {
+		log.Fatalln(err)
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"msg": "add book successful",
+	})
+}
+
+// 增加书籍描述信息
+func Add_25_history_book_detail(c *gin.Context) {
+	bookName := c.Request.FormValue("book_name")
+	bookAuthor := c.Request.FormValue("book_author")
+	bookDesc := c.Request.FormValue("book_desc")
+	p := model.Book_history_25_detail{BookName: bookName, BookAuthor: bookAuthor, BookDesc: bookDesc}
+	_, err := (&p).AddHistoryBook25Detail()
 	if err != nil {
 		log.Fatalln(err)
 	}

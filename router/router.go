@@ -12,6 +12,7 @@ func InitRouter() *gin.Engine {
 	router.GET("/person", apis.AddPersonApi)
 	router.GET("/persons", apis.SelectAllPerson)
 	router.POST("/addBook25", apis.Add_25_history_book)
+	router.POST("/addbookdetail", apis.Add_25_history_book_detail)
 
 	return router
 }

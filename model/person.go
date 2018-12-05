@@ -18,6 +18,23 @@ type Book_history_25 struct {
 	BookContent string `json:"book_content" form:"book_content"`
 }
 
+type Book_history_25_detail struct {
+	Id int `json:"id" form "id"`
+	BookName string `json:"book_name" form:"book_name"`
+	BookAuthor string `json:"book_author form "book_author`
+	BookDesc string `json:"book_desc" form "book_desc"`
+}
+
+func (b *Book_history_25_detail) AddHistoryBook25Detail() (id int64, err error)  {
+	rs, err := db.SqlDB.Exec("INSERT INTO history_book_25_detail (book_name, book_author, book_desc) VALUES (?, ?, ?)", b.BookName, b.BookAuthor, b.BookDesc)
+	if err != nil {
+		log.Fatalln(err)
+		return
+	}
+	id, err = rs.LastInsertId()
+	return
+}
+
 func (b *Book_history_25) AddBookHistory25() (id int64, err error)  {
 	rs, err := db.SqlDB.Exec("INSERT INTO history_book_25 (book_name, book_index, book_content) VALUES (?, ?, ?)", b.BookName, b.BookIndex, b.BookContent)
 	if err != nil {
