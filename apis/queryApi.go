@@ -72,3 +72,17 @@ func Add_25_history_book_detail(c *gin.Context) {
 		"msg": "add book successful",
 	})
 }
+
+
+// 获取书籍
+func Select_book_desc(c *gin.Context)  {
+	b := model.Book_history_25_detail{}
+	ra, err := (&b).GetBookList()
+	if err != nil {
+		log.Fatalln(err)
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"msg":     "successful",
+		"result": ra,
+	})
+}
