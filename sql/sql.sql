@@ -10,6 +10,7 @@ CREATE TABLE `history_book_25`  (
   `book_name` varchar(100) NULL DEFAULT '' ,
   `book_index` varchar(255) NULL DEFAULT '',
   `book_content` varchar(255) NULL default '',
+  `book_key` varchar(100) NULL default '',
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
@@ -22,5 +23,6 @@ CREATE TABLE `history_book_25_detail`  (
   `book_name` varchar(100) NULL DEFAULT '' ,
   `book_author` varchar(255) NULL DEFAULT '',
   `book_desc` varchar(1000) NULL default '',
+  `book_key` varchar(100) NULL default '',
   PRIMARY KEY (`id`)
 )  ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;

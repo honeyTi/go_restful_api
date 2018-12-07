@@ -48,7 +48,8 @@ func Add_25_history_book(c *gin.Context) {
 	bookName := c.Request.FormValue("book_name")
 	bookIndex := c.Request.FormValue("book_index")
 	bookContent := c.Request.FormValue("book_content")
-	p := model.Book_history_25{BookName: bookName, BookIndex: bookIndex, BookContent: bookContent}
+	bookKey := c.Request.FormValue("book_key")
+	p := model.Book_history_25{BookName: bookName, BookIndex: bookIndex, BookContent: bookContent, BookKey:bookKey}
 	_, err := (&p).AddBookHistory25()
 	if err != nil {
 		log.Fatalln(err)
@@ -63,7 +64,8 @@ func Add_25_history_book_detail(c *gin.Context) {
 	bookName := c.Request.FormValue("book_name")
 	bookAuthor := c.Request.FormValue("book_author")
 	bookDesc := c.Request.FormValue("book_desc")
-	p := model.Book_history_25_detail{BookName: bookName, BookAuthor: bookAuthor, BookDesc: bookDesc}
+	bookKey := c.Request.FormValue("book_key")
+	p := model.Book_history_25_detail{BookName: bookName, BookAuthor: bookAuthor, BookDesc: bookDesc, BookKey:bookKey}
 	_, err := (&p).AddHistoryBook25Detail()
 	if err != nil {
 		log.Fatalln(err)
@@ -73,16 +75,30 @@ func Add_25_history_book_detail(c *gin.Context) {
 	})
 }
 
-
 // 获取书籍
-func Select_book_desc(c *gin.Context)  {
+func Select_book_desc(c *gin.Context) {
 	b := model.Book_history_25_detail{}
 	ra, err := (&b).GetBookList()
 	if err != nil {
 		log.Fatalln(err)
 	}
 	c.JSON(http.StatusOK, gin.H{
-		"msg":     "successful",
+		"msg":    "successful",
+		"result": ra,
+	})
+}
+
+// 获取书籍内容
+func Select_book_Contents(c *gin.Context) {
+	bookKey := c.Query("book_key")
+	bookName := c.Query("book_name")
+	b := model.Book_history_25{BookKey: bookKey, BookName:bookName}
+	ra, err := (&b).GetBookIndex()
+	if err != nil {
+		log.Fatalln(err)
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"msg":    "successful",
 		"result": ra,
 	})
 }

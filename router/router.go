@@ -54,6 +54,7 @@ func InitRouter() *gin.Engine {
 	router.POST("/addBook25", apis.Add_25_history_book)
 	router.POST("/addbookdetail", apis.Add_25_history_book_detail)
 	router.GET("/history_book_list25", apis.Select_book_desc)
+	router.GET("/bookhistory25",apis.Select_book_Contents)
 
 	return router
 }
