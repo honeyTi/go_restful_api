@@ -116,3 +116,5 @@ func (b *Book_history_25) GetBookIndex() (books []Book_history_25, err error) {
 	}
 	return
 }
+
+// 获取单章节数据
